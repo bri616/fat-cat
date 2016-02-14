@@ -9,12 +9,20 @@
 <input type="number" id="wet-food-in-g"></input>
 </body>
 <div id="kcal-of-wet-food"></div>
+<div id="g-of-dry-food"></div>
 <script>
-var wetFoods = {"Just Juicy Turkey": 10,
-		"Just Juicy Chicken": 15,
-                "Just Juicy Pollock": 8}
 
-var currentWetFoodType = ""
+// In kCal per kg
+var wetFoods = {"Just Juicy Turkey": 1023.5,
+		"Just Juicy Chicken": 1005,
+                "Just Juicy Pollock": 730}
+
+var currentWetFoodType = "";
+
+var kcalPerFeeding = 160;
+var kcalPerKgDryFood = 3825;
+//var kcalPerKgDryFood = 2857;
+
 
 $.each(wetFoods, function(key, value) {   
      $('#food-menu')
@@ -28,13 +36,19 @@ $(document).on('change', "#food-menu", function(e) {
 });
 
 function calcWetFoodKCal(wetFoodType, g) {
-	var kcalPerG = wetFoods[wetFoodType]
-	return kcalPerG*g
-}
+	var kcalPerKg = wetFoods[wetFoodType]
+	return kcalPerKg/1000*g
+};
+
+function calcNeededDryFoodInG(kcalPerFeeding, kcalPerKgDryFood, kcalWetFood) {
+	kgDryFood = (kcalPerFeeding - kcalWetFood) / kcalPerKgDryFood;
+	return kgDryFood*1000
+};
 
 $(document).on('keyup', "#wet-food-in-g", function() {
 	console.log(currentWetFoodType)
 	$("#kcal-of-wet-food")[0].innerHTML=calcWetFoodKCal(currentWetFoodType,this.value)
+	$("#g-of-dry-food")[0].innerHTML=calcNeededDryFoodInG(kcalPerFeeding, kcalPerKgDryFood, calcWetFoodKCal(currentWetFoodType, this.value));
 });
 </script>
 </html>
