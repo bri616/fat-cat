@@ -3,10 +3,16 @@
     <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 </head>
 <body>
-<select id="food-menu" name="select">
-<option value="0"></option>
-</select>
-<input type="number" id="wet-food-in-g"></input>
+<div class="food-menu-container">
+    <span>Type of food</span>
+    <select id="food-menu" name="select">
+        <option value="0"></option>
+    </select>
+</div>
+<div class="wet-food-input-container">
+    <input type="number" id="wet-food-in-g"></input>
+    <span class="units">g</span>
+</div>
 </body>
 <div class="wet-food-container">
     <span id="kcal-of-wet-food">0</span>
