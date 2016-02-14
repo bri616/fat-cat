@@ -6,11 +6,15 @@
 <select id="food-menu" name="select">
 <option value="0"></option>
 </select>
+<input type="number" id="wet-food-in-g"></input>
 </body>
+<div id="kcal-of-wet-food"></div>
 <script>
 var wetFoods = {"Just Juicy Turkey": 10,
 		"Just Juicy Chicken": 15,
                 "Just Juicy Pollock": 8}
+
+var currentWetFoodType = ""
 
 $.each(wetFoods, function(key, value) {   
      $('#food-menu')
@@ -19,7 +23,18 @@ $.each(wetFoods, function(key, value) {
          .text(key)); 
 });
 $(document).on('change', "#food-menu", function(e) {
-    console.log(this.options[e.target.selectedIndex].value);
+    //console.log(this.options[e.target.selectedIndex].value);
+	currentWetFoodType = this.options[e.target.selectedIndex].text;
+});
+
+function calcWetFoodKCal(wetFoodType, g) {
+	var kcalPerG = wetFoods[wetFoodType]
+	return kcalPerG*g
+}
+
+$(document).on('keyup', "#wet-food-in-g", function() {
+	console.log(currentWetFoodType)
+	$("#kcal-of-wet-food")[0].innerHTML=calcWetFoodKCal(currentWetFoodType,this.value)
 });
 </script>
 </html>
