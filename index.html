@@ -4,17 +4,51 @@
 </head>
 <body>
 <select id="food-menu" name="select">
-  <option value="value1">Value 1</option> 
-  <option value="value2" selected>Value 2</option>
-  <option value="value3">Value 3</option>
+<option value="0"></option>
 </select>
+<input type="number" id="wet-food-in-g"></input>
 </body>
+<div id="kcal-of-wet-food"></div>
+<div id="g-of-dry-food"></div>
 <script>
-var wetFoods = [
-                {name: "Just Juicy Turkey", kcalperg: 10},
-                {name: "Just Juicy Chicken", kcalperg: 15},
-                {name: "Just Juicy Pollock", kcalperg: 8},
-               ];
-$("#food-menu").append($("<option value=\"newthing\">A new thing</option>"));
+
+// In kCal per kg
+var wetFoods = {"Just Juicy Turkey": 1023.5,
+		"Just Juicy Chicken": 1005,
+                "Just Juicy Pollock": 730}
+
+var currentWetFoodType = "";
+
+var kcalPerFeeding = 160;
+var kcalPerKgDryFood = 3825;
+//var kcalPerKgDryFood = 2857;
+
+
+$.each(wetFoods, function(key, value) {   
+     $('#food-menu')
+         .append($("<option></option>")
+         .attr("value",value)
+         .text(key)); 
+});
+$(document).on('change', "#food-menu", function(e) {
+    //console.log(this.options[e.target.selectedIndex].value);
+	currentWetFoodType = this.options[e.target.selectedIndex].text;
+});
+
+function calcWetFoodKCal(wetFoodType, g) {
+	var kcalPerKg = wetFoods[wetFoodType]
+	return kcalPerKg/1000*g
+};
+
+function calcNeededDryFoodInG(kcalPerFeeding, kcalPerKgDryFood, kcalWetFood) {
+	kgDryFood = (kcalPerFeeding - kcalWetFood) / kcalPerKgDryFood;
+	return kgDryFood*1000
+};
+
+$(document).on('keyup', "#wet-food-in-g", function() {
+	console.log(currentWetFoodType)
+	$("#kcal-of-wet-food")[0].innerHTML=calcWetFoodKCal(currentWetFoodType,this.value)
+	$("#g-of-dry-food")[0].innerHTML=calcNeededDryFoodInG(kcalPerFeeding, kcalPerKgDryFood, calcWetFoodKCal(currentWetFoodType, this.value));
+});
 </script>
 </html>
