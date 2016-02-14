@@ -8,8 +8,14 @@
 </select>
 <input type="number" id="wet-food-in-g"></input>
 </body>
-<div id="kcal-of-wet-food"></div>
-<div id="g-of-dry-food"></div>
+<div class="wet-food-container">
+    <span id="kcal-of-wet-food">0</span>
+    <span class="units">kCal</span>
+</div>
+<div class="dry-food-container">
+    <span id="g-of-dry-food">0</span>
+    <span class="units">g</span>
+</div>
 <script>
 
 var currentWetFoodType = "";
