@@ -4,17 +4,22 @@
 </head>
 <body>
 <select id="food-menu" name="select">
-  <option value="value1">Value 1</option> 
-  <option value="value2" selected>Value 2</option>
-  <option value="value3">Value 3</option>
+<option value="0"></option>
 </select>
 </body>
 <script>
-var wetFoods = [
-                {name: "Just Juicy Turkey", kcalperg: 10},
-                {name: "Just Juicy Chicken", kcalperg: 15},
-                {name: "Just Juicy Pollock", kcalperg: 8},
-               ];
-$("#food-menu").append($("<option value=\"newthing\">A new thing</option>"));
+var wetFoods = {"Just Juicy Turkey": 10,
+		"Just Juicy Chicken": 15,
+                "Just Juicy Pollock": 8}
+
+$.each(wetFoods, function(key, value) {   
+     $('#food-menu')
+         .append($("<option></option>")
+         .attr("value",value)
+         .text(key)); 
+});
+$(document).on('change', "#food-menu", function(e) {
+    console.log(this.options[e.target.selectedIndex].value);
+});
 </script>
 </html>
