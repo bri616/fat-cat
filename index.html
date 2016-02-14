@@ -12,24 +12,30 @@
 <div id="g-of-dry-food"></div>
 <script>
 
-// In kCal per kg
-var wetFoods = {"Just Juicy Turkey": 1023.5,
-		"Just Juicy Chicken": 1005,
-                "Just Juicy Pollock": 730}
-
 var currentWetFoodType = "";
 
 var kcalPerFeeding = 160;
 var kcalPerKgDryFood = 3825;
 //var kcalPerKgDryFood = 2857;
+var wetFoods = {};
 
+function myBruce(stuff) {
+    bruce = stuff.feed.entry;
+    for (var i = 0; i < bruce.length; i++) {
+         wetFoods[bruce[i].title.$t] = parseFloat(bruce[i].content.$t.split(" ")[1]);
+    };
+    buildFoodMenu();   
+};
 
-$.each(wetFoods, function(key, value) {   
-     $('#food-menu')
-         .append($("<option></option>")
-         .attr("value",value)
-         .text(key)); 
-});
+function buildFoodMenu() {
+    $.each(wetFoods, function(key, value) {   
+         $('#food-menu')
+             .append($("<option></option>")
+             .attr("value",value)
+             .text(key)); 
+    });
+};
+
 $(document).on('change', "#food-menu", function(e) {
     //console.log(this.options[e.target.selectedIndex].value);
 	currentWetFoodType = this.options[e.target.selectedIndex].text;
@@ -51,4 +57,5 @@ $(document).on('keyup', "#wet-food-in-g", function() {
 	$("#g-of-dry-food")[0].innerHTML=calcNeededDryFoodInG(kcalPerFeeding, kcalPerKgDryFood, calcWetFoodKCal(currentWetFoodType, this.value));
 });
 </script>
+<script src="http://spreadsheets.google.com/feeds/list/14e4-F9rcLuyZ71so6S4E-QrcXHTjO8907BVZiR3mH2k/od6/public/basic?alt=json-in-script&callback=myBruce"></script>
 </html>
