@@ -59,8 +59,8 @@ function calcNeededDryFoodInG(kcalPerFeeding, kcalPerKgDryFood, kcalWetFood) {
 
 $(document).on('keyup', "#wet-food-in-g", function() {
 	console.log(currentWetFoodType)
-	$("#kcal-of-wet-food")[0].innerHTML=calcWetFoodKCal(currentWetFoodType,this.value)
-	$("#g-of-dry-food")[0].innerHTML=calcNeededDryFoodInG(kcalPerFeeding, kcalPerKgDryFood, calcWetFoodKCal(currentWetFoodType, this.value));
+	$("#kcal-of-wet-food")[0].innerHTML=Math.round(calcWetFoodKCal(currentWetFoodType,this.value));
+	$("#g-of-dry-food")[0].innerHTML=Math.round(calcNeededDryFoodInG(kcalPerFeeding, kcalPerKgDryFood, calcWetFoodKCal(currentWetFoodType, this.value)));
 });
 </script>
 <script src="https://spreadsheets.google.com/feeds/list/14e4-F9rcLuyZ71so6S4E-QrcXHTjO8907BVZiR3mH2k/od6/public/basic?alt=json-in-script&callback=myBruce"></script>
