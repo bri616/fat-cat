@@ -59,6 +59,7 @@ var currentWetFoodType = "";
 var kcalPerFeeding = 160;
 var kcalPerKgDryFood = 3825;
 //var kcalPerKgDryFood = 2857;
+wetFoodInG = 0;
 var wetFoods = {};
 
 function myBruce(stuff) {
@@ -81,6 +82,7 @@ function buildFoodMenu() {
 $(document).on('change', "#food-menu", function(e) {
     //console.log(this.options[e.target.selectedIndex].value);
 	currentWetFoodType = this.options[e.target.selectedIndex].text;
+	updateAllCalc();
 });
 
 function calcWetFoodKCal(wetFoodType, g) {
@@ -93,10 +95,15 @@ function calcNeededDryFoodInG(kcalPerFeeding, kcalPerKgDryFood, kcalWetFood) {
 	return kgDryFood*1000
 };
 
+function updateAllCalc() {
+	$("#kcal-of-wet-food")[0].innerHTML=Math.round(calcWetFoodKCal(currentWetFoodType,wetFoodInG));
+	$("#g-of-dry-food")[0].innerHTML=Math.round(calcNeededDryFoodInG(kcalPerFeeding, kcalPerKgDryFood, calcWetFoodKCal(currentWetFoodType, wetFoodInG)));
+};
+
 $(document).on('keyup', "#wet-food-in-g", function() {
-	console.log(currentWetFoodType)
-	$("#kcal-of-wet-food")[0].innerHTML=Math.round(calcWetFoodKCal(currentWetFoodType,this.value));
-	$("#g-of-dry-food")[0].innerHTML=Math.round(calcNeededDryFoodInG(kcalPerFeeding, kcalPerKgDryFood, calcWetFoodKCal(currentWetFoodType, this.value)));
+	console.log(currentWetFoodType);
+	wetFoodInG = this.value
+	updateAllCalc();
 });
 </script>
 <script src="https://spreadsheets.google.com/feeds/list/14e4-F9rcLuyZ71so6S4E-QrcXHTjO8907BVZiR3mH2k/od6/public/basic?alt=json-in-script&callback=myBruce"></script>
