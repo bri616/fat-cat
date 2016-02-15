@@ -2,28 +2,38 @@
 <html lang="en">
 <head>
     <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Corben:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<div class="food-menu-container">
-    <span>Type of food</span>
-    <select id="food-menu" name="select">
-        <option value="0"></option>
-    </select>
-</div>
-<div class="wet-food-input-container">
-    <input type="number" id="wet-food-in-g"></input>
-    <span class="units">g</span>
-</div>
-<div class="wet-food-container">
-    <span id="kcal-of-wet-food">0</span>
-    <span class="units">kCal</span>
-</div>
-<div class="dry-food-container">
-    <span id="g-of-dry-food">0</span>
-    <span class="units">g</span>
-</div>
+<div class="container-fluid">
+    <div class="title">
+        <h1 id="title">Plutocat</h1><img src="gentlemancat.png">
+        <div class="subtitle">(he's kind of a big deal)</div>
+    </div>
+    <div class="food-menu-container">
+        <span>Type of food</span>
+        <select id="food-menu" name="select">
+            <option value="0"></option>
+        </select>
+    </div>
+    <div class="wet-food-input-container">
+        <input type="number" id="wet-food-in-g"></input>
+        <span class="units">g</span>
+    </div>
+    <div class="wet-food-container">
+        <span id="kcal-of-wet-food">0</span>
+        <span class="units">kCal</span>
+    </div>
+    <div class="dry-food-container">
+        <span id="g-of-dry-food">0</span>
+        <span class="units">g</span>
+    </div>
+</div> <!-- /.container -->
 </body>
 <script>
 

@@ -1,0 +1,13 @@
+img {
+    width: 200px;
+}
+
+.title, #title {
+    font-family: 'Corben', cursive;
+    font-weight: 700;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
