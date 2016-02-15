@@ -19,23 +19,34 @@
             </div>
         </div> <!-- /col -->
         <div class="col-md-8">
-            <div class="food-menu-container">
-                <span>Type of food</span>
-                <select id="food-menu" name="select">
-                    <option value="0"></option>
-                </select>
+            <div class="row">
+                <div class="food-menu-container form-inline">
+                    <span>Type of food</span>
+                    <select id="food-menu" class="form-control" name="select">
+                        <option value="0"></option>
+                    </select>
+                </div>
             </div>
-            <div class="wet-food-input-container">
-                <input type="number" id="wet-food-in-g"></input>
-                <span class="units">g</span>
+            <div class="row">
+                <div class="wet-food-input-container form-inline">
+                    <span>Amount</span>
+                    <input type="number" id="wet-food-in-g" class="form-control"></input>
+                    <span class="units">g</span>
+                </div>
             </div>
-            <div class="wet-food-container">
-                <span id="kcal-of-wet-food">0</span>
-                <span class="units">kCal</span>
-            </div>
-            <div class="dry-food-container">
-                <span id="g-of-dry-food">0</span>
-                <span class="units">g</span>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="wet-food-container">
+                        <span id="kcal-of-wet-food">0</span>
+                        <span class="units">kCal</span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="dry-food-container">
+                        <span id="g-of-dry-food">0</span>
+                        <span class="units">g</span>
+                    </div>
+                </div>
             </div>
         </div> <!-- /col -->
     </div> <!-- /.row -->
