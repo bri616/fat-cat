@@ -11,28 +11,34 @@
 </head>
 <body>
 <div class="container-fluid">
-    <div class="title">
-        <h1 id="title">Plutocat</h1><img src="gentlemancat.png">
-        <div class="subtitle">(he's kind of a big deal)</div>
-    </div>
-    <div class="food-menu-container">
-        <span>Type of food</span>
-        <select id="food-menu" name="select">
-            <option value="0"></option>
-        </select>
-    </div>
-    <div class="wet-food-input-container">
-        <input type="number" id="wet-food-in-g"></input>
-        <span class="units">g</span>
-    </div>
-    <div class="wet-food-container">
-        <span id="kcal-of-wet-food">0</span>
-        <span class="units">kCal</span>
-    </div>
-    <div class="dry-food-container">
-        <span id="g-of-dry-food">0</span>
-        <span class="units">g</span>
-    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="title">
+                <h1 id="title">Plutocat</h1><img src="gentlemancat.png">
+                <div class="subtitle">(he's kind of a big deal)</div>
+            </div>
+        </div> <!-- /col -->
+        <div class="col-md-8">
+            <div class="food-menu-container">
+                <span>Type of food</span>
+                <select id="food-menu" name="select">
+                    <option value="0"></option>
+                </select>
+            </div>
+            <div class="wet-food-input-container">
+                <input type="number" id="wet-food-in-g"></input>
+                <span class="units">g</span>
+            </div>
+            <div class="wet-food-container">
+                <span id="kcal-of-wet-food">0</span>
+                <span class="units">kCal</span>
+            </div>
+            <div class="dry-food-container">
+                <span id="g-of-dry-food">0</span>
+                <span class="units">g</span>
+            </div>
+        </div> <!-- /col -->
+    </div> <!-- /.row -->
 </div> <!-- /.container -->
 </body>
 <script>
