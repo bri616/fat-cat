@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.0/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.0/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.16/browser.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <!--react-select-->
+    <script src="https://npmcdn.com/classnames/index.js"></script>
+    <script src="https://npmcdn.com/react-input-autosize/dist/react-input-autosize.js"></script>
+    <script src="https://npmcdn.com/react-select/dist/react-select.js"></script>
+    <link rel="stylesheet" href="https://npmcdn.com/react-select/dist/react-select.css">
+    <!--/react-select-->
+    <link href='https://fonts.googleapis.com/css?family=Corben:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="title">
+                <h1 id="title">Plutocat</h1><img src="gentlemancat.png">
+                <div class="subtitle">(he's kind of a big deal)</div>
+            </div>
+        </div> <!-- /col -->
+        <div class="col-md-8">
+            <div id="kitten-form">
+            </div>
+        </div> <!--/col-->
+</div> <!--/container-fluid-->
+</body>
+<script>
+    var wetFoods = [];
+    function myBruce(stuff) {
+        bruce = stuff.feed.entry;
+        for (var i = 0; i < bruce.length; i++) {
+            wetFoods[i] = {label: bruce[i].title.$t, value: parseFloat(bruce[i].content.$t.split(" ")[1])};
+        };
+    };
+</script>
+<script src="https://spreadsheets.google.com/feeds/list/14e4-F9rcLuyZ71so6S4E-QrcXHTjO8907BVZiR3mH2k/od6/public/basic?alt=json-in-script&callback=myBruce"></script>
+<script type="text/babel">
+    var WetFoodList = React.createClass({
+        render: function () {
+            var options = this.props.options.map(function(option) {
+                return (
+                    <option key={option.label} value={option.value}> {option.label}</option>
+                )
+            });
+            return (
+                <div className="row food-menu-container form-inline">
+                    <span>Type of food</span>
+                    <Select name="select-name" options={this.props.options} />
+                    <select id="food-menu" className="form-control" name="select">
+                        {options}
+                    </select>
+                </div>
+            );
+        }
+    });
+    ReactDOM.render(
+        <div id="cool">
+        <WetFoodList options={wetFoods} />
+        </div>,
+        document.getElementById('kitten-form')
+    );
+</script>
+</html>
+
